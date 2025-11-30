@@ -19,15 +19,23 @@ export default function HomePage() {
 
         {/* HERO */}
         <section className="relative pt-20">
-          {/* decorativo */}
+
+          {/* decorativo superior izquierdo */}
           <div className="absolute -left-32 -top-24 pointer-events-none">
-            <svg width="550" height="520" viewBox="0 0 600 600" fill="none">
+            <svg
+              width="550"
+              height="520"
+              viewBox="0 0 600 600"
+              fill="none"
+              preserveAspectRatio="xMidYMid meet"
+            >
               <defs>
                 <linearGradient id="g1" x1="0" x2="1">
                   <stop offset="0%" stopColor="#F8EFE6" />
                   <stop offset="100%" stopColor="#FFF4EA" />
                 </linearGradient>
               </defs>
+
               <path
                 d="M120 0 C 220 40, 420 0, 560 60 C 700 120, 700 300, 560 360 C 420 420, 220 380, 120 420 C 20 460, 0 320, 0 200 C 0 80, 20 -20, 120 0 Z"
                 fill="url(#g1)"
@@ -36,6 +44,31 @@ export default function HomePage() {
             </svg>
           </div>
 
+          {/* decorativo inferior derecho */}
+          <div className="absolute -right-36 -bottom-20 pointer-events-none rotate-180">
+            <svg
+              width="550"
+              height="880"  // ← YA CORREGIDO
+              viewBox="0 0 600 600"
+              fill="none"
+              preserveAspectRatio="xMidYMid meet"
+            >
+              <defs>
+                <linearGradient id="g2" x1="0" x2="1">
+                  <stop offset="0%" stopColor="#F8EFE6" />
+                  <stop offset="100%" stopColor="#FFF4EA" />
+                </linearGradient>
+              </defs>
+
+              <path
+                d="M120 0 C 220 40, 420 0, 560 60 C 700 120, 700 300, 560 360 C 420 420, 220 380, 120 420 C 20 460, 0 320, 0 200 C 0 80, 20 -20, 120 0 Z"
+                fill="url(#g2)"
+                opacity="0.9"
+              />
+            </svg>
+          </div>
+
+          {/* CONTENIDO HERO */}
           <div className="grid md:grid-cols-2 gap-12 items-center relative z-10 pb-20">
             <div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight">
@@ -67,6 +100,7 @@ export default function HomePage() {
 
               {/* Features */}
               <div className="mt-8 flex flex-wrap gap-4">
+                {/* Feature 1 */}
                 <div className="flex items-center gap-3 bg-white/90 border border-gray-100 rounded-xl px-4 py-2 shadow-sm">
                   <div className="rounded-full w-9 h-9 bg-gradient-to-br from-yellow-100 to-yellow-200 flex items-center justify-center">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
@@ -80,6 +114,7 @@ export default function HomePage() {
                   </div>
                 </div>
 
+                {/* Feature 2 */}
                 <div className="flex items-center gap-3 bg-white/90 border border-gray-100 rounded-xl px-4 py-2 shadow-sm">
                   <div className="rounded-full w-9 h-9 bg-gradient-to-br from-indigo-50 to-indigo-100 flex items-center justify-center">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
@@ -215,7 +250,7 @@ export default function HomePage() {
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               <div>
                 <h4 className="text-2xl font-bold">Únete a la comunidad lectora</h4>
-                <p className="mt-2 text-white/90">
+                <p className="mt-2 text-white">
                   Recibe recomendaciones, lanzamientos y ofertas exclusivas.
                 </p>
               </div>
@@ -224,7 +259,7 @@ export default function HomePage() {
                 <input
                   aria-label="email"
                   placeholder="Tu correo"
-                  className="px-4 py-3 rounded-full text-gray-800 outline-none"
+                  className="px-4 py-3 rounded-full text-white outline-none"
                 />
                 <button className="bg-white text-indigo-600 px-5 py-3 rounded-full font-semibold">
                   Suscribirme
@@ -236,7 +271,6 @@ export default function HomePage() {
       </section>
 
       <div className="h-20" />
-
     </div>
   );
 }
