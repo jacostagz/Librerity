@@ -9,8 +9,32 @@ import {
   ArrowRight,
   Search as SearchIcon,
 } from "lucide-react";
+import React, { useEffect, useState } from "react";
 
 export default function HomePage() {
+  // Datos de los testimonios
+  const testimonials = [
+    { text: "¡Me encantó la selección de libros! El proceso de compra fue muy fácil.", author: "Carlos" },
+    { text: "Gran experiencia, el envío fue rápido y los libros llegaron en excelente estado.", author: "Ana" },
+    { text: "Un servicio excepcional, ¡lo recomiendo totalmente!", author: "Luis" },
+    { text: "La calidad de los libros es increíble y siempre hay ofertas interesantes.", author: "Isabel" },
+    { text: "Excelente atención al cliente, me ayudaron a encontrar el libro perfecto.", author: "Jorge" },
+    { text: "Una librería que siempre tiene lo que busco, además los precios son muy buenos.", author: "Sandra" },
+    { text: "Excelente variedad de géneros, ¡no me canso de comprar aquí!", author: "Paola" },
+    { text: "Recibí mis libros mucho antes de lo esperado. ¡Muy recomendable!", author: "David" },
+    { text: "La calidad de los libros es excelente, siempre me siento satisfecho.", author: "Mónica" },
+  ];
+
+  // Carrusel de Testimonios automático
+  const [index, setIndex] = useState(0);
+  const totalViews = 3;
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % totalViews); // Cambiar de testimonio cada 3 segundos
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [totalViews]);
+
   return (
     <div className="w-full overflow-x-hidden">
 
@@ -48,7 +72,7 @@ export default function HomePage() {
           <div className="absolute -right-36 -bottom-20 pointer-events-none rotate-180">
             <svg
               width="550"
-              height="880"  // ← YA CORREGIDO
+              height="880"
               viewBox="0 0 600 600"
               fill="none"
               preserveAspectRatio="xMidYMid meet"
@@ -98,35 +122,6 @@ export default function HomePage() {
                 </button>
               </div>
 
-              {/* Features */}
-              <div className="mt-8 flex flex-wrap gap-4">
-                {/* Feature 1 */}
-                <div className="flex items-center gap-3 bg-white/90 border border-gray-100 rounded-xl px-4 py-2 shadow-sm">
-                  <div className="rounded-full w-9 h-9 bg-gradient-to-br from-yellow-100 to-yellow-200 flex items-center justify-center">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                      <path d="M12 5v14" stroke="#7C5A00" strokeWidth="1.6" strokeLinecap="round" />
-                      <path d="M5 12h14" stroke="#7C5A00" strokeWidth="1.6" strokeLinecap="round" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="text-sm font-semibold text-gray-800">Envíos a todo el país</div>
-                    <div className="text-xs text-gray-500">Rápido y seguro</div>
-                  </div>
-                </div>
-
-                {/* Feature 2 */}
-                <div className="flex items-center gap-3 bg-white/90 border border-gray-100 rounded-xl px-4 py-2 shadow-sm">
-                  <div className="rounded-full w-9 h-9 bg-gradient-to-br from-indigo-50 to-indigo-100 flex items-center justify-center">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                      <path d="M3 7h18" stroke="#4D65FF" strokeWidth="1.6" strokeLinecap="round" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="text-sm font-semibold text-gray-800">Pagos seguros</div>
-                    <div className="text-xs text-gray-500">Wompi / PSE</div>
-                  </div>
-                </div>
-              </div>
             </div>
 
             {/* Imagen */}
@@ -134,8 +129,7 @@ export default function HomePage() {
               <div className="relative w-[380px] h-[420px]">
                 <div className="absolute -left-6 -top-6 w-72 h-72 bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-2xl rotate-6 shadow-lg" />
                 <div className="absolute left-6 top-10 w-64 h-80 bg-white rounded-2xl shadow-xl overflow-hidden">
-                  <img src="/libros.png" alt="libros" className="w-full h-full object-cover transform translate-x-0"/>
-                  
+                  <img src="/libros.png" alt="libros" className="w-full h-full object-cover"/>
                 </div>
 
                 <div className="absolute right-0 bottom-0 bg-yellow-100 px-3 py-2 rounded-full shadow-sm text-yellow-800 text-sm">
@@ -202,7 +196,7 @@ export default function HomePage() {
       {/* FEATURED */}
       <section className="max-w-7xl mx-auto px-6 py-16">
         <div className="flex items-center justify-between mb-8">
-          <h3 className="text-3xl font-bold text-gray-900">Libros destacados</h3>
+          <h3 className="text-2xl font-semibold text-gray-900">Libros destacados</h3>
           <button className="text-indigo-600 hover:underline inline-flex items-center gap-2">
             Ver todo
             <ArrowRight className="w-4 h-4" />
@@ -211,17 +205,24 @@ export default function HomePage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {[ 
-            { title: "El monje que vendió su ferrari", price: "38.900", image: "/Ferrari.png" },
+            { title: "Monje que vendió su ferrari", price: "38.900", image: "/Ferrari.png" },
             { title: "El camino del artista", price: "39.900", image: "/Artista.jpg" },
             { title: "Cartas de un estoico", price: "69.900", image: "/Estoico.png" },
-            { title: "Ser rico es fácil y muy jodido", price: "49.900", image: "/Jodido.png" },
+            { title: "Ser rico es fácil", price: "49.900", image: "/Jodido.png" },
           ].map((b) => (
-            <BookCard key={b.title} title={b.title} price={b.price} image={b.image} />
+            <div key={b.title} className="flex flex-col bg-white p-6 shadow-lg rounded-xl flex-grow">
+              <img src={b.image} alt={b.title} className="w-full h-90 object-cover rounded-xl mb-4" />
+              <h4 className="text-lg font-semibold">{b.title}</h4>
+              <p className="text-gray-500">{b.price}</p>
+              <button className="mt-auto inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-3 rounded-full shadow-md transition">
+                Añadir
+              </button>
+            </div>
           ))}
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
+      {/* TESTIMONIALS - Carrusel */}
       <section className="bg-white/60">
         <div className="max-w-7xl mx-auto px-6 py-16">
           <h3 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
@@ -229,16 +230,26 @@ export default function HomePage() {
             Lo que dicen nuestros lectores
           </h3>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[ 
-              { text: "Llegó rápido y el libro estaba en perfecto estado. Repetiré.", author: "María" },
-              { text: "Gran selección y envío eficiente.", author: "Andrés" },
-              { text: "Precio justo y atención amable.", author: "Luisa" },
-            ].map((t, i) => (
-              <blockquote key={i} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-                <p className="text-gray-700 italic">“{t.text}”</p>
-                <footer className="mt-4 font-semibold text-gray-900">— {t.author}</footer>
-              </blockquote>
+          <div className="relative w-full overflow-hidden">
+            <div className="flex transition-transform duration-[1200ms] ease-out"
+              style={{ transform: `translateX(-${index * 100}%)` }}>
+              {testimonials.map((t, i) => (
+                <div key={i} className="min-w-[33.333%] px-4 flex flex-col">
+                  <blockquote className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                    <p className="text-gray-700 italic">“{t.text}”</p>
+                    <footer className="mt-4 font-semibold text-gray-900">— {t.author}</footer>
+                  </blockquote>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex gap-3 mt-5 justify-center">
+            {Array.from({ length:3 }).map((_, i) => (
+              <div
+                key={i}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${i === index ? "bg-blue-400 scale-125" : "bg-gray-500"}`}
+              ></div>
             ))}
           </div>
         </div>
