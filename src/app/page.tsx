@@ -10,6 +10,7 @@ import {
   Search as SearchIcon,
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
+import { useCart } from "../libreria/cart"; // Importando el hook useCart
 
 export default function HomePage() {
   // Datos de los testimonios
@@ -35,15 +36,24 @@ export default function HomePage() {
     return () => clearInterval(interval);
   }, [totalViews]);
 
+  // Usando el hook useCart para gestionar el carrito
+  const { add, items } = useCart();
+
+  const handleAddToCart = (book: { title: string; price: string; image: string }) => {
+    add({
+      id: book.title,
+      title: book.title,
+      price: parseFloat(book.price.replace('.', '').replace(',', '.')), // Convertimos el precio a número
+      cover: book.image,
+    });
+  };
+
   return (
     <div className="w-full overflow-x-hidden">
-
       {/* === CONTENEDOR GLOBAL — ALINEADO AL HEADER === */}
       <div className="max-w-7xl mx-auto px-6">
-
         {/* HERO */}
         <section className="relative pt-20">
-
           {/* decorativo superior izquierdo */}
           <div className="absolute -left-32 -top-24 pointer-events-none">
             <svg
@@ -121,7 +131,6 @@ export default function HomePage() {
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
-
             </div>
 
             {/* Imagen */}
@@ -129,7 +138,7 @@ export default function HomePage() {
               <div className="relative w-[380px] h-[420px]">
                 <div className="absolute -left-6 -top-6 w-72 h-72 bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-2xl rotate-6 shadow-lg" />
                 <div className="absolute left-6 top-10 w-64 h-80 bg-white rounded-2xl shadow-xl overflow-hidden">
-                  <img src="/libros.png" alt="libros" className="w-full h-full object-cover"/>
+                  <img src="/libros.png" alt="libros" className="w-full h-full object-cover" />
                 </div>
 
                 <div className="absolute right-0 bottom-0 bg-yellow-100 px-3 py-2 rounded-full shadow-sm text-yellow-800 text-sm">
@@ -139,13 +148,12 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-
-      </div> {/* cierre contenedor global */}
+      </div>
 
       {/* CATEGORIES */}
       <section className="bg-[#FFF8EA]">
         <div className="max-w-7xl mx-auto px-6 py-12">
-          <h3 className="text-2xl font-semibold text-gray-900 mb-6 flex items-center gap-3">
+          <h3 className="text-3xl font-semibold text-gray-900 mb-6 flex items-center gap-3">
             <Layers className="w-6 h-6 text-indigo-600" />
             Explorar por categorías
           </h3>
@@ -205,16 +213,16 @@ export default function HomePage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {[ 
-            { title: "Monje que vendió su ferrari", price: "38.900", image: "/Ferrari.png" },
+            { title: "El monje que vendió", price: "38.900", image: "/Ferrari.png" },
             { title: "El camino del artista", price: "39.900", image: "/Artista.jpg" },
             { title: "Cartas de un estoico", price: "69.900", image: "/Estoico.png" },
             { title: "Ser rico es fácil", price: "49.900", image: "/Jodido.png" },
           ].map((b) => (
             <div key={b.title} className="flex flex-col bg-white p-6 shadow-lg rounded-xl flex-grow">
               <img src={b.image} alt={b.title} className="w-full h-90 object-cover rounded-xl mb-4" />
-              <h4 className="text-lg font-semibold">{b.title}</h4>
-              <p className="text-gray-500">{b.price}</p>
-              <button className="mt-auto inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-3 rounded-full shadow-md transition">
+              <h4 className="text-lg font-semibold text-gray-900">{b.title}</h4>
+              <p className="text-lg font-semibold text-gray-600">{b.price}</p>
+              <button onClick={() => handleAddToCart(b)} className="mt-auto inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg shadow-md transition-all transform hover:scale-105">
                 Añadir
               </button>
             </div>
@@ -224,8 +232,8 @@ export default function HomePage() {
 
       {/* TESTIMONIALS - Carrusel */}
       <section className="bg-white/60">
-        <div className="max-w-7xl mx-auto px-6 py-16">
-          <h3 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+        <div className="max-w-7xl mx-auto px-6 py-12">
+          <h3 className="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-3">
             <Quote className="w-7 h-7 text-indigo-600" />
             Lo que dicen nuestros lectores
           </h3>
@@ -245,7 +253,7 @@ export default function HomePage() {
           </div>
 
           <div className="flex gap-3 mt-5 justify-center">
-            {Array.from({ length:3 }).map((_, i) => (
+            {Array.from({ length: 3 }).map((_, i) => (
               <div
                 key={i}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${i === index ? "bg-blue-400 scale-125" : "bg-gray-500"}`}
@@ -257,7 +265,7 @@ export default function HomePage() {
 
       {/* CTA */}
       <section className="relative">
-        <div className="max-w-7xl mx-auto px-6 py-16">
+        <div className="max-w-7xl mx-auto px-6 py-12">
           <div className="rounded-3xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-12 shadow-xl">
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               <div>
@@ -281,7 +289,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
     </div>
   );
 }

@@ -92,7 +92,7 @@ export function Header() {
 
           <Link href="/carrito" aria-label="Carrito" className="relative p-2 rounded-md hover:bg-gray-100 transition">
             <ShoppingCart className="w-6 h-6 text-gray-700" strokeWidth={1.5} />
-            <span className="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs px-1.5 rounded-full shadow">
+            <span className="absolute -top-1 -right-2 bg-indigo-600 text-white text-xs px-1.5 rounded-full shadow">
               0
             </span>
           </Link>
