@@ -31,7 +31,6 @@ export function Header() {
 
           <Link href="/" className="text-lg font-semibold tracking-tight text-gray-900">
             <span className="mr-1">Librerity</span>
-            <span className="text-sm text-gray-500 hidden md:inline">· libros con estilo</span>
           </Link>
         </div>
 
