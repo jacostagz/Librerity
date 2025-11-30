@@ -5,16 +5,18 @@ import { useState } from "react";
 import { Search, User, ShoppingCart } from "lucide-react";
 
 /* ------------------------------------------------------
-   HEADER — Hydration-safe (sin strings multilínea)
+   HEADER — línea premium estilo Xiaomi
 ------------------------------------------------------ */
 
 export function Header() {
   const [query, setQuery] = useState("");
 
   return (
-    <header className="w-full sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b">
+    <header className="w-full sticky top-0 z-50 bg-white/80 backdrop-blur-md">
+      {/* Línea premium */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-300/40 to-transparent" />
+
       <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center gap-6">
-        
         {/* Left: logo */}
         <div className="flex items-center gap-3">
           <div
@@ -54,7 +56,6 @@ export function Header() {
         {/* Center: search */}
         <div className="flex-1">
           <div className="relative mx-auto max-w-2xl bg-white/95 border border-gray-100 rounded-full shadow-[0_6px_20px_rgba(48,56,79,0.08)] px-4 py-2 flex items-center gap-3 transition-all hover:shadow-[0_10px_30px_rgba(48,56,79,0.10)]">
-            
             <span className="w-9 h-9 rounded-full bg-gradient-to-br from-yellow-100 to-yellow-300 flex items-center justify-center -ml-1">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
                 <path d="M12 5v14" stroke="#7C5A00" strokeWidth="1.6" strokeLinecap="round" />
@@ -96,25 +97,88 @@ export function Header() {
             </span>
           </Link>
         </div>
-
       </nav>
     </header>
   );
 }
 
 /* ------------------------------------------------------
-   FOOTER — seguro y sencillo
+   FOOTER — igual al header: blanco, semitransparente, blur
 ------------------------------------------------------ */
 
 export function Footer() {
-  const year = new Date().getFullYear(); // Seguro (se ejecuta en cliente)
-  
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="border-t mt-20 bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-7xl mx-auto px-6 py-8 text-center">
-        <p className="text-sm text-gray-600">
-          Librerity © {year} — Tu librería online sin comisiones
-        </p>
+    <footer className="mt-5 bg-white/80 backdrop-blur-md">
+      {/* Línea premium arriba */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-300/40 to-transparent" />
+
+      <div className="max-w-7xl mx-auto px-6 py-12">
+        {/* GRID PRINCIPAL */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-10 text-sm text-gray-700">
+
+          {/* Columna 1 */}
+          <div>
+            <h4 className="font-semibold text-gray-900 mb-4">Soporte</h4>
+            <ul className="space-y-2">
+              <li><a href="#" className="hover:text-black">Atención al cliente</a></li>
+              <li><a href="#" className="hover:text-black">Garantía</a></li>
+              <li><a href="#" className="hover:text-black">Reparaciones</a></li>
+              <li><a href="#" className="hover:text-black">Manual de usuario</a></li>
+            </ul>
+          </div>
+
+          {/* Columna 2 */}
+          <div>
+            <h4 className="font-semibold text-gray-900 mb-4">Comprar</h4>
+            <ul className="space-y-2">
+              <li><a href="#" className="hover:text-black">Ofertas</a></li>
+              <li><a href="#" className="hover:text-black">Nuevos productos</a></li>
+              <li><a href="#" className="hover:text-black">Métodos de pago</a></li>
+              <li><a href="#" className="hover:text-black">Envíos</a></li>
+            </ul>
+          </div>
+
+          {/* Columna 3 */}
+          <div>
+            <h4 className="font-semibold text-gray-900 mb-4">Empresa</h4>
+            <ul className="space-y-2">
+              <li><a href="#" className="hover:text-black">Acerca de</a></li>
+              <li><a href="#" className="hover:text-black">Inversionistas</a></li>
+              <li><a href="#" className="hover:text-black">Noticias</a></li>
+              <li><a href="#" className="hover:text-black">Privacidad</a></li>
+            </ul>
+          </div>
+
+          {/* Columna 4 */}
+          <div>
+            <h4 className="font-semibold text-gray-900 mb-4">Comunidad</h4>
+            <ul className="space-y-2">
+              <li><a href="#" className="hover:text-black">Foros</a></li>
+              <li><a href="#" className="hover:text-black">Mi Fans</a></li>
+              <li><a href="#" className="hover:text-black">Eventos</a></li>
+              <li><a href="#" className="hover:text-black">Beta Program</a></li>
+            </ul>
+          </div>
+
+          {/* Columna 5 */}
+          <div>
+            <h4 className="font-semibold text-gray-900 mb-4">Contacto</h4>
+            <ul className="space-y-2">
+              <li><a href="#" className="hover:text-black">Chat en vivo</a></li>
+              <li><a href="#" className="hover:text-black">Correo</a></li>
+              <li><a href="#" className="hover:text-black">Soporte técnico</a></li>
+              <li><a href="#" className="hover:text-black">Redes sociales</a></li>
+            </ul>
+          </div>
+        </div>
+
+        {/* branding */}
+        <div className="text-center text-gray-600 text-sm mt-12">
+          <p>Librerity © {year}</p>
+          <p className="text-xs text-gray-500 mt-1">Una experiencia de lectura premium</p>
+        </div>
       </div>
     </footer>
   );
@@ -127,7 +191,7 @@ export function Footer() {
 export function BookCard({ title, price, image }: any) {
   return (
     <article className="bg-white rounded-2xl border border-gray-100 shadow-[0_8px_30px_rgba(15,23,42,0.06)] p-4 hover:shadow-[0_14px_40px_rgba(15,23,42,0.08)] transition transform hover:-translate-y-1">
-      
+
       <div className="relative overflow-hidden rounded-xl">
         <img
           src={image || "/placeholder-book.png"}

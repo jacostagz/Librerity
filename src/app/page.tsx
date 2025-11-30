@@ -134,7 +134,8 @@ export default function HomePage() {
               <div className="relative w-[380px] h-[420px]">
                 <div className="absolute -left-6 -top-6 w-72 h-72 bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-2xl rotate-6 shadow-lg" />
                 <div className="absolute left-6 top-10 w-64 h-80 bg-white rounded-2xl shadow-xl overflow-hidden">
-                  <img src="/libros.png" alt="libros" className="w-full h-full object-cover" />
+                  <img src="/libros.png" alt="libros" className="w-full h-full object-cover transform translate-x-0"/>
+                  
                 </div>
 
                 <div className="absolute right-0 bottom-0 bg-yellow-100 px-3 py-2 rounded-full shadow-sm text-yellow-800 text-sm">
@@ -156,7 +157,7 @@ export default function HomePage() {
           </h3>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
+            {[ 
               { name: "Ficción", color: "from-pink-50 to-pink-100" },
               { name: "Autoayuda", color: "from-yellow-50 to-yellow-100" },
               { name: "Negocios", color: "from-green-50 to-green-100" },
@@ -209,11 +210,11 @@ export default function HomePage() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {[
-            { title: "La casa de los espíritus", price: "59.900", image: "/cover1.jpg" },
-            { title: "Mañanas milagrosas", price: "39.900", image: "/cover2.jpg" },
-            { title: "Sapiens", price: "69.900", image: "/cover3.jpg" },
-            { title: "1984", price: "49.900", image: "/cover4.jpg" },
+          {[ 
+            { title: "El monje que vendió su ferrari", price: "38.900", image: "/Ferrari.png" },
+            { title: "El camino del artista", price: "39.900", image: "/Artista.jpg" },
+            { title: "Cartas de un estoico", price: "69.900", image: "/Estoico.png" },
+            { title: "Ser rico es fácil y muy jodido", price: "49.900", image: "/Jodido.png" },
           ].map((b) => (
             <BookCard key={b.title} title={b.title} price={b.price} image={b.image} />
           ))}
@@ -229,7 +230,7 @@ export default function HomePage() {
           </h3>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {[
+            {[ 
               { text: "Llegó rápido y el libro estaba en perfecto estado. Repetiré.", author: "María" },
               { text: "Gran selección y envío eficiente.", author: "Andrés" },
               { text: "Precio justo y atención amable.", author: "Luisa" },
@@ -259,7 +260,7 @@ export default function HomePage() {
                 <input
                   aria-label="email"
                   placeholder="Tu correo"
-                  className="px-4 py-3 rounded-full text-white outline-none"
+                  className="px-6 py-3 rounded-2xl text-gray-900 bg-white shadow-lg border-2 border-gray-300 focus:ring-2 focus:ring-indigo-400 outline-none transition-all"
                 />
                 <button className="bg-white text-indigo-600 px-5 py-3 rounded-full font-semibold">
                   Suscribirme
@@ -270,7 +271,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="h-20" />
     </div>
   );
 }
