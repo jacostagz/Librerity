@@ -122,11 +122,11 @@ export default function HomePage() {
                   <input
                     aria-label="Buscar libros"
                     placeholder="Buscar por título, autor o tema..."
-                    className="w-full pl-12 pr-4 py-3 rounded-full border border-gray-200 bg-white shadow-sm focus:ring-2 focus:ring-indigo-200 outline-none transition"
+                    className="w-full pl-12 pr-4 py-3 rounded-full border border-gray-200 bg-white shadow-sm focus:ring-2 focus:ring-indigo-200 outline-none transition duration-500 ease-in-out transform hover:scale-105"
                   />
                 </div>
 
-                <button className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-3 rounded-full shadow-md transition">
+                <button className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-3 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-110">
                   Explorar
                   <ArrowRight className="w-4 h-4" />
                 </button>
@@ -136,8 +136,8 @@ export default function HomePage() {
             {/* Imagen */}
             <div className="flex justify-center md:justify-end">
               <div className="relative w-[380px] h-[420px]">
-                <div className="absolute -left-6 -top-6 w-72 h-72 bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-2xl rotate-6 shadow-lg" />
-                <div className="absolute left-6 top-10 w-64 h-80 bg-white rounded-2xl shadow-xl overflow-hidden">
+                <div className="absolute -left-6 -top-6 w-72 h-72 bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-2xl rotate-6 shadow-lg transform hover:scale-105 transition-all duration-500" />
+                <div className="absolute left-6 top-10 w-64 h-80 bg-white rounded-2xl shadow-xl overflow-hidden transform hover:scale-105 transition-all duration-300">
                   <img src="/libros.png" alt="libros" className="w-full h-full object-cover" />
                 </div>
 
@@ -171,7 +171,7 @@ export default function HomePage() {
             ].map((c) => (
               <button
                 key={c.name}
-                className="bg-white rounded-2xl p-5 text-left flex items-center gap-4 border border-gray-100 shadow-sm hover:shadow-lg transition"
+                className="bg-white rounded-2xl p-5 text-left flex items-center gap-4 border border-gray-100 shadow-sm hover:shadow-lg transition transform hover:scale-105 duration-300 ease-out"
               >
                 <div
                   className={`w-12 h-12 rounded-lg bg-gradient-to-br ${c.color} flex items-center justify-center shadow-sm`}
@@ -218,11 +218,14 @@ export default function HomePage() {
             { title: "Cartas de un estoico", price: "69.900", image: "/Estoico.png" },
             { title: "Ser rico es fácil", price: "49.900", image: "/Jodido.png" },
           ].map((b) => (
-            <div key={b.title} className="flex flex-col bg-white p-6 shadow-lg rounded-xl flex-grow">
+            <div key={b.title} className="flex flex-col bg-white p-6 shadow-lg rounded-xl flex-grow hover:scale-105 transform transition-all duration-500">
               <img src={b.image} alt={b.title} className="w-full h-90 object-cover rounded-xl mb-4" />
               <h4 className="text-lg font-semibold text-gray-900">{b.title}</h4>
               <p className="text-lg font-semibold text-gray-600">{b.price}</p>
-              <button onClick={() => handleAddToCart(b)} className="mt-auto inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg shadow-md transition-all transform hover:scale-105">
+              <button
+                onClick={() => handleAddToCart(b)}
+                className="mt-auto inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg shadow-md transition-all transform hover:scale-105"
+              >
                 Añadir
               </button>
             </div>

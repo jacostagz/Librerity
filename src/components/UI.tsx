@@ -86,7 +86,8 @@ export function Header() {
 
         {/* Right icons */}
         <div className="flex items-center gap-4">
-          <Link href="/usuario" aria-label="Mi cuenta" className="p-2 rounded-md hover:bg-gray-100 transition">
+          {/* Link a la página de autenticación */}
+          <Link href="/auth" className="p-2 rounded-md hover:bg-gray-100 transition">
             <User className="w-6 h-6 text-gray-700" strokeWidth={1.5} />
           </Link>
 
